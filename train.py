@@ -50,32 +50,33 @@ def main():
     args, cfg = parse_args()
 
     # *  define paths ( output, logger) * #
-    if not os.path.exists(cfg.OUTPUT_DIR):
-        os.makedirs(cfg.OUTPUT_DIR)
+    if not os.path.exists(cfg.EXP.OUTPUT_DIR):
+        os.makedirs(cfg.EXP.OUTPUT_DIR)
         
     timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
 
-    logger_path = 'result/'+cfg.EXP_NAME+'_'+timestamp +'.log'
+    logger_path = 'result/'+cfg.EXP.NAME+'_'+timestamp +'.log'
 
     global logger, tWriter, vWriter
     logger = get_logger(logger_path)
-    tWriter = SummaryWriter(cfg.OUTPUT_DIR+'tb_data/train')
-    vWriter = SummaryWriter(cfg.OUTPUT_DIR+'tb_data/val')
+    tWriter = SummaryWriter(cfg.EXP.OUTPUT_DIR+'tb_data/train')
+    vWriter = SummaryWriter(cfg.EXP.OUTPUT_DIR+'tb_data/val')
     
     # # * controll random seed * #
-    # random.seed(cfg.RANDOM_SEED)
-    # torch.manual_seed(cfg.RANDOM_SEED)
+    torch.manual_seed(cfg.TRAIN.SEED)
+    torch.cuda.manual_seed(cfg.TRAIN.SEED)
+    np.random.seed(cfg.TRAIN.SEED)
+    random.seed(cfg.TRAIN.SEED)
 
 
     # TODO: findout what cudnn options are
-    cudnn.benchmark = cfg.CUDNN.BENCHMARK
-    cudnn.deterministic = cfg.CUDNN.DETERMINISTIC
-    cudnn.enabled = cfg.CUDNN.ENABLED
-
-
+    cudnn.benchmark = cfg.SYS.CUDNN_DETERMINISTIC
+    cudnn.deterministic = cfg.SYS.CUDNN_DETERMINISTIC
+    cudnn.enabled = cfg.SYS.CUDNN_ENABLED
+    
 
     msg = '[{time}]' 'starts experiments setting '\
-            '{exp_name}'.format(time = time.ctime(), exp_name = cfg.EXP_NAME)
+            '{exp_name}'.format(time = time.ctime(), exp_name = cfg.EXP.NAME)
     logger.info(msg)
     
 
@@ -93,7 +94,9 @@ def main():
 
     # TODO: get model arch
     model = get_model(cfg)
-
+    pretrained_path='models/hardnet_petite_base.pth'
+    weights = torch.load(pretrained_path)
+    model.module.base.load_state_dict(weights)
     if distributed:
         device = torch.device('cuda:{}'.format(args.local_rank))
         torch.cuda.set_device(device)
@@ -115,9 +118,8 @@ def main():
 
     # * define OPTIMIZER * #
     params_dict = dict(model.named_parameters())
-    params = [{'params': list(params_dict.values()), 'lr': cfg.TRAIN.INIT_LR}]
-    # params = [{'params': bb_lr, 'lr': init_lr}, {'params': nbb_lr, 'lr': init_lr*10}]    
-    optimizer = torch.optim.SGD(params, lr=cfg.TRAIN.INIT_LR, momentum=cfg.TRAIN.MOMENTUM, weight_decay=cfg.TRAIN.WD)
+    params = [{'params': list(params_dict.values()), 'lr': cfg.TRAIN.OPT.LR}]
+    optimizer = torch.optim.SGD(params, lr=cfg.TRAIN.OPT.LR, momentum=cfg.TRAIN.OPT.MOMENTUM, weight_decay=cfg.TRAIN.OPT.WD)
 
 
     # * RESUME * #
@@ -152,7 +154,7 @@ def main():
                 logger.info("=> no checkpoint found at '{}'".format(cfg.TRAIN.RESUME))
 
 
-
+    # TODO
     # * build DATALODER * #
     train_loader = build_train_loader(cfg)
     val_loader = build_val_loader(cfg)
@@ -175,7 +177,7 @@ def main():
                 'epoch': epoch_log,
                 'state_dict': model.module.state_dict(),
                 'optimizer': optimizer.state_dict(),
-            }, os.path.join(cfg.OUTPUT_DIR,'checkpoint.pth.tar'))
+            }, os.path.join(cfg.EXP.OUTPUT_DIR,'checkpoint.pth.tar'))
         
         loss_val, mIoU_val, mAcc_val, allAcc_val = validation(model, val_loader, cfg)
 
@@ -192,7 +194,7 @@ def main():
                     'epoch': epoch+1,
                     'state_dict': model.module.state_dict(),
                     'optimizer': optimizer.state_dict(),
-                }, os.path.join(cfg.OUTPUT_DIR,'best.pth.tar'))
+                }, os.path.join(cfg.EXP.OUTPUT_DIR,'best.pth.tar'))
                 best_mIoU = mIoU_val
                 best_epoch = epoch+1
 
@@ -206,7 +208,7 @@ def main():
 
     if args.local_rank <= 0:
         torch.save(model.module.state_dict(),
-            os.path.join(cfg.OUTPUT_DIR, 'final_state.pth'))
+            os.path.join(cfg.EXP.OUTPUT_DIR, 'final_state.pth'))
 
 
 def train(model, train_loader, optimizer, epoch, cfg):
@@ -264,7 +266,7 @@ def train(model, train_loader, optimizer, epoch, cfg):
         current_iter = epoch * len(train_loader) + i_iter + 1
 
         lr = adjust_learning_rate(optimizer,
-                                  cfg.TRAIN.INIT_LR,
+                                  cfg.TRAIN.OPT.LR,
                                   max_iter,
                                   current_iter)
 

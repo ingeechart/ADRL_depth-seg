@@ -35,7 +35,8 @@ base
 │   ├── build_train_dataloader
 │   ├── build_val_dataloader
 │
-├── model.py
+├── models
+│   ├── model.py
 │   ├── build_model
 │   ├── backbone 
 │   ├── modules
@@ -53,7 +54,7 @@ base
 │   ├── transform.py
 │   │   ├── usilts for transform data
 │
-├── config.py(Todo)
+├── config.py
 │
 ├── result
 │   ├── tb_data
@@ -67,6 +68,7 @@ base
 
 # Todo
 0. DataLoader
-1. Model
-2. Training code
-3. Test code
+1. Training code
+2. Test code
+3. demo.py
+4. data.py transform 부분 따로 빼고 싶은데......

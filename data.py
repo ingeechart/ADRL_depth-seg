@@ -36,25 +36,28 @@ class Cityscapes(data.Dataset):
 
         self.nClasses = 19
 
-        self.label_mapping = {-1: ignore_label, 0: ignore_label, 
-                              1: ignore_label, 2: ignore_label, 
-                              3: ignore_label, 4: ignore_label, 
-                              5: ignore_label, 6: ignore_label, 
-                              7: 0, 8: 1,
-                              9: ignore_label, 10: ignore_label,
-                              11: 2, 12: 3,
-                              13: 4, 14: ignore_label, 
-                              15: ignore_label, 16: ignore_label, 
-                              17: 5, 18: ignore_label, 
-                              19: 6, 20: 7, 21: 8, 22: 9, 23: 10, 
-                              24: 11,
-                              25: 12, 26: 13, 27: 14, 28: 15, 
-                              29: ignore_label, 30: ignore_label, 
-                              31: 16, 32: 17, 33: 18}
-        self.class_names = ['road', 'sidewalk', 'building', 'wall', 'fence',\
-                            'pole', 'traffic_light', 'traffic_sign', 'vegetation', 'terrain',\
-                            'sky', 'person', 'rider', 'car', 'truck', 'bus', 'train', \
-                            'motorcycle', 'bicycle','unlabelled'] # 6,5,7,2
+        self.colors = [  # [  0,   0,   0],
+            [128, 64, 128],
+            [244, 35, 232],
+            [70, 70, 70],
+            [102, 102, 156],
+            [190, 153, 153],
+            [153, 153, 153],
+            [250, 170, 30],
+            [220, 220, 0],
+            [107, 142, 35],
+            [152, 251, 152],
+            [0, 130, 180],
+            [220, 20, 60],
+            [255, 0, 0],
+            [0, 0, 142],
+            [0, 0, 70],
+            [0, 60, 100],
+            [0, 80, 100],
+            [0, 0, 230],
+            [119, 11, 32],
+        ]
+        label_colours = dict(zip(range(19), self.colors))
 
     def __len__(self):
         return len(self.files)
@@ -79,19 +82,45 @@ class Cityscapes(data.Dataset):
 
         return img, label
 
-    def convert_label(self, label, inverse=False):
-        temp = label.clone()
-        if inverse:
-            for v, k in self.label_mapping.items():
-                label[temp == k] = v
-        else:
-            for k, v in self.label_mapping.items():
-                label[temp == k] = v
-        return label
-    
+
+    def id2Trainid(self, mask):
+        # Put all void classes to zero
+        for _voidc in self.void_classes:
+            mask[mask == _voidc] = self.ignore_index
+        for _validc in self.valid_classes:
+            mask[mask == _validc] = self.class_map[_validc]
+        return mask
+    # the three channels
+
+    def rgb2id(self, img)
+        label_seg = np.zeros((img.shape[:2]), dtype=np.int)
+        
+        for i, id in enumerate(self.colors):
+            label_seg[(img==id).all(axis=2)] = i+1
+    '''
+    def id2rgb(self, temp):
+        r = temp.copy()
+        g = temp.copy()
+        b = temp.copy()
+        for l in range(0, self.n_classes):
+            r[temp == l] = self.label_colours[l][0]
+            g[temp == l] = self.label_colours[l][1]
+            b[temp == l] = self.label_colours[l][2]
+
+        rgb = np.zeros((temp.shape[0], temp.shape[1], 3))
+        rgb[:, :, 0] = r / 255.0
+        rgb[:, :, 1] = g / 255.0
+        rgb[:, :, 2] = b / 255.0
+        return rgb
+
+    def trainId2id(self, temp):
+        ids = np.zeros((temp.shape[0], temp.shape[1]),dtype=np.uint8)
+        for l in range(0, self.n_classes):
+            ids[temp == l] = self.valid_classes[l]
+        return ids
+    '''
     def get_file_path(self):
         return self.files
-
 
 
 def build_train_loader(cfg):
@@ -102,29 +131,29 @@ def build_train_loader(cfg):
     std = [0.229, 0.224, 0.225]
     std = [item * value_scale for item in std]
 
+    # TODO
     train_transforms = transform.Compose([
         transform.RandScale([0.5,2]),
         transform.RandomHorizontalFlip(),
-        transform.Crop([768, 768], crop_type='rand', padding=mean, ignore_label=255),
+        transform.Crop(cfg.TRAIN.DATA.CROP_SIZE, crop_type='rand', padding=mean, ignore_label=255),
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std)
         ])
 
-    train_data = Cityscapes(data_root='cityscapes/', split='train', transforms=train_transforms)
+    train_data = Cityscapes(data_root=cfg.DATASET.ROOT, split=cfg.DATASET.TRAIN_SPLIT, transforms=train_transforms)
 
-    # TODO
     if dist.is_initialized():
         from torch.utils.data.distributed import DistributedSampler
         sampler = DistributedSampler(train_data)
     else:
         sampler =  None
 
-    # TODO check shuffle
+
     data_loader = torch.utils.data.DataLoader(train_data,
-                            num_workers=8,
-                            batch_size=cfg.DATASET.TRAIN_BATCH_SIZE//4,
+                            num_workers=cfg.SYS.WORKERS,
+                            batch_size=cfg.DATASET.TRAIN.BATCH_SIZE//len(cfg.SYS.GPUS),
                             shuffle=False,
-                            pin_memory=True,
+                            pin_memory=cfg.SYS.PIN_MEMORY,
                             drop_last=True,
                             sampler=sampler)
 
@@ -139,11 +168,10 @@ def build_val_loader(cfg):
     std = [item * value_scale for item in std]
 
     val_transforms = transform.Compose([
-            # transform.Crop([713, 713], crop_type='center', padding=mean, ignore_label=255),
             transform.ToTensor(),
             transform.Normalize(mean=mean, std=std)
             ])
-    val_data = Cityscapes(data_root='cityscapes/', split='val', transforms=val_transforms)
+    val_data = Cityscapes(data_root=cfg.DATASET.ROOT, split=cfg.DATASET.VAL_SPLIT, transforms=val_transforms)
     if dist.is_initialized():
         from torch.utils.data.distributed import DistributedSampler
         sampler = DistributedSampler(val_data)
@@ -152,7 +180,7 @@ def build_val_loader(cfg):
 
     data_loader = torch.utils.data.DataLoader(val_data,
                                             num_workers=4,
-                                            batch_size=cfg.DATASET.VAL_BATCH_SIZE//4,
+                                            batch_size=1,
                                             shuffle=False,
                                             pin_memory=True,
                                             sampler=sampler)
