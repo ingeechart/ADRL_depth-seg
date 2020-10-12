@@ -299,13 +299,14 @@ class Bootstrapped_CrossEntropy2d(nn.Module):
             loss += self._bootstrap_xentropy_single(
                 input=torch.unsqueeze(input[i], 0),
                 target=torch.unsqueeze(target[i], 0),
+                thresh=self.thresh
             )
 
         return loss / float(batch_size)
 
 
 class hardnet(nn.Module):
-    def __init__(self, n_classes=19):
+    def __init__(self, n_classes=4):
         super(hardnet, self).__init__()
 
         first_ch  = [16,24,32,48]
@@ -314,7 +315,7 @@ class hardnet(nn.Module):
         gr       = [  10,16,18,24,32]
         n_layers = [   4, 4, 8, 8, 8]
 
-        blks = len(n_layers) 
+        blks = len(n_layers)
         self.shortcut_layers = []
 
         self.base = nn.ModuleList([])
@@ -337,8 +338,8 @@ class hardnet(nn.Module):
 
             self.base.append ( ConvLayer(ch, ch_list[i], kernel=1) )
             ch = ch_list[i]
-            
-            if i < blks-1:            
+
+            if i < blks-1:
               self.base.append ( nn.AvgPool2d(kernel_size=2, stride=2) )
 
 
@@ -354,7 +355,7 @@ class hardnet(nn.Module):
         self.transUpBlocks = nn.ModuleList([])
         self.denseBlocksUp = nn.ModuleList([])
         self.conv1x1_up    = nn.ModuleList([])
-        
+
         for i in range(n_blocks-1,-1,-1):
             self.transUpBlocks.append(TransitionUp(prev_block_channels, prev_block_channels))
             cur_channels_count = prev_block_channels + skip_connection_channel_counts[i]
@@ -362,7 +363,7 @@ class hardnet(nn.Module):
             cur_channels_count = cur_channels_count//2
 
             blk = HarDBlock(cur_channels_count, gr[i], grmul, n_layers[i])
-            
+
             self.denseBlocksUp.append(blk)
             prev_block_channels = blk.get_out_ch()
             cur_channels_count = prev_block_channels
@@ -375,10 +376,11 @@ class hardnet(nn.Module):
         #    Loss Function    #
         #######################
 
-        self.LossFunction = Bootstrapped_CrossEntropy2d()
+        # self.LossFunction = Bootstrapped_CrossEntropy2d(K=4096, thresh=0.3, weight=1.0, size_average=True)
+        self.LossFunction = nn.CrossEntropyLoss(ignore_index = 255)
 
 
-    def v2_transform(self, trt=False):        
+    def v2_transform(self, trt=False):
         for i in range( len(self.base)):
             if isinstance(self.base[i], HarDBlock):
                 blk = self.base[i]
@@ -391,28 +393,27 @@ class hardnet(nn.Module):
             self.denseBlocksUp[i].transform(blk, trt)
 
     def forward(self, x, target):
-        
+
         skip_connections = []
         size_in = x.size()
-        
-        
+
+
         for i in range(len(self.base)):
             x = self.base[i](x)
             if i in self.shortcut_layers:
                 skip_connections.append(x)
         out = x
-        
+
         for i in range(self.n_blocks):
             skip = skip_connections.pop()
             out = self.transUpBlocks[i](out, skip, True)
             out = self.conv1x1_up[i](out)
             out = self.denseBlocksUp[i](out)
-        
-        out = self.finalConv(out)
-        
-        loss = self.loss(out, target)
 
-        return loss
+        out = self.finalConv(out)
+
+        loss = self.LossFunction(out, target)
+        return loss, out.max(1)[1] #same as argmax
 
 
 

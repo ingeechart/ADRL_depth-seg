@@ -1,3 +1,4 @@
+# coding=<utf-8>
 import os
 from yacs.config import CfgNode as CN
 
@@ -5,10 +6,10 @@ _C = CN()
 
 ''' Define Experiments '''
 _C.EXP = CN()
-_C.EXP.NAME = 'segmentation'
+_C.EXP.NAME = 'test_model'
 _C.EXP.OUTPUT_DIR = 'results/'
 _C.EXP.LOG_DIR = 'results/looog.log'
-
+_C.EXP.PRINT_FREQ = 10
 
 ''' Define system environment for Training '''
 _C.SYS = CN()
@@ -17,27 +18,27 @@ _C.SYS.WORKERS = 8
 _C.SYS.LOCAL_RANK = ''
 _C.SYS.PIN_MEMORY = True
 
-_C.SYS.CUDNN_DETERMINISTIC = False
-_C.SYS.CUDNN_BENCHMARK = True
+_C.SYS.CUDNN_DETERMINISTIC = True
+_C.SYS.CUDNN_BENCHMARK = False
 _C.SYS.CUDNN_ENABLED= True
 
 
 ''' Define Detail hyperparameters for training '''
 _C.TRAIN = CN()
-_C.TRAIN.SEED = 1337
+_C.TRAIN.SEED = 8967
 _C.TRAIN.RESUME = ''
 _C.TRAIN.START_EPOCH = 0
-_C.TRAIN.END_EPOCH = 400
+_C.TRAIN.END_EPOCH = 800
 _C.TRAIN.BATCH_SIZE = 16
 
 _C.TRAIN.OPT = CN()
 _C.TRAIN.OPT.NAME = 'SGD'
-_C.TRAIN.OPT.LR = 0.02
-_C.TRAIN.OPT.WD = 0.0005
+_C.TRAIN.OPT.LR = 0.1
+_C.TRAIN.OPT.WD = 1e-4
 _C.TRAIN.OPT.MOMENTUM = 0.9
 
 _C.TRAIN.DATA = CN()
-_C.TRAIN.DATA.CROP_SIZE = [1024,1024]
+_C.TRAIN.DATA.CROP_SIZE = [320,480]
 _C.TRAIN.DATA.SHUFFLE = False
 _C.TRAIN.DATA.DROP_LAST = True
 _C.TRAIN.DATA.AUG = ''
@@ -60,7 +61,7 @@ _C.MODEL.LOSS.SIZE_AVG = True
 
 ''' DATASET related params '''
 _C.DATASET = CN()
-_C.DATASET.ROOT = 'ws'
+_C.DATASET.ROOT = 'ADRL'
 _C.DATASET.NAME = 'ADRL'
 _C.DATASET.NUM_CLASSES = 4
 _C.DATASET.TRAIN_SPLIT = 'train'
