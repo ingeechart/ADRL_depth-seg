@@ -3,6 +3,7 @@
 '''
 import copy
 import torchvision.models as models
+import torch
 
 from models.hardnet import hardnet
 

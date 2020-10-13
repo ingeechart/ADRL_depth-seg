@@ -48,10 +48,9 @@ def parse_args():
 def main():
 
     args, cfg = parse_args()
-
     # *  define paths ( output, logger) * #
     if not os.path.exists(cfg.EXP.OUTPUT_DIR):
-        os.makedirs(cfg.EXP.OUTPUT_DIR)
+        os.makedirs(cfg.EXP.OUTPUT_DIR) # weight result save
 
     timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
 
@@ -73,6 +72,7 @@ def main():
     cudnn.benchmark = cfg.SYS.CUDNN_BENCHMARK
     cudnn.deterministic = cfg.SYS.CUDNN_DETERMINISTIC
     cudnn.enabled = cfg.SYS.CUDNN_ENABLED
+    #in cuda operation faster tool
 
 
     msg = '[{time}]' 'starts experiments setting '\
@@ -82,22 +82,30 @@ def main():
 
     # * GPU env setup. * #
     #TODO : dist.world_size find must
-    distributed = args.local_rank >= 0
+    distributed = torch.cuda.device_count() > 0
     if distributed:
         torch.distributed.init_process_group(
             backend="nccl", init_method="env://",
         )
-
+    else :
+        pass
 
     # * define MODEL * #
-    if dist.get_rank()==0:
+    if distributed :
+        if dist.get_rank()==0:
+            logger.info("=> creating model ...")
+    else :
         logger.info("=> creating model ...")
 
     # TODO: get model arch
     model = get_model(cfg)
     pretrained_path='models/hardnet_petite_base.pth'
-    weights = torch.load(pretrained_path)
+    if distributed :
+        weights = torch.load(pretrained_path)
+    else :
+        weights = torch.load(pretrained_path, map_location='cpu')
     model.base.load_state_dict(weights)
+
 
     if distributed:
         device = torch.device('cuda:{}'.format(args.local_rank))
@@ -111,44 +119,53 @@ def main():
             device_ids=[args.local_rank],
             output_device=args.local_rank
         )
-    else:
-        model = nn.DataParallel(model, device_ids=cfg.gpus).cuda()
-    if dist.get_rank()==0:
-        logger.info(model)
+    #model = nn.DataParallel(model, device_ids=cfg.gpus).cuda()
 
+    if distributed :
+        if dist.get_rank()==0:
+            logger.info(model)
+    else :
+        #logger.info(model)
+        pass
 
     # * define OPTIMIZER * #
     params_dict = dict(model.named_parameters())
     params = [{'params': list(params_dict.values()), 'lr': cfg.TRAIN.OPT.LR}]
     optimizer = torch.optim.SGD(params, lr=cfg.TRAIN.OPT.LR, momentum=cfg.TRAIN.OPT.MOMENTUM, weight_decay=cfg.TRAIN.OPT.WD)
 
+    global best_epoch, best_mIoU
 
     if cfg.TRAIN.RESUME:
         if os.path.isfile(cfg.TRAIN.RESUME):
-            if dist.get_rank()==0:
-                logger.info("=> loading checkpoint '{}'".format(cfg.TRAIN.RESUME))
+            if distributed :
+                if dist.get_rank()==0:
+                    logger.info("=> loading checkpoint '{}'".format(cfg.TRAIN.RESUME))
 
-            checkpoint = torch.load(cfg.TRAIN.RESUME, map_location=lambda storage, loc: storage.cuda())
+                checkpoint = torch.load(cfg.TRAIN.RESUME, map_location=lambda storage, loc: storage.cuda())
 
-            start_epoch = checkpoint['epoch']
+                start_epoch = checkpoint['epoch']
+                best_epoch = start_epoch
+                start_mIoU = checkpoint['mIoU']
 
-            checkpoint_dict = checkpoint['state_dict']
-            model_dict = model.state_dict()
-            checkpoint_dict = {'module.'+k: v for k, v in checkpoint_dict.items()
-                            if 'module.'+k in model_dict.keys()}
-            for k, _ in checkpoint_dict.items():
-                logger.info('=> loading {} pretrained model {}'.format(k, cfg.TRAIN.RESUME))
+                checkpoint_dict = checkpoint['state_dict']
+                model_dict = model.state_dict()
+                checkpoint_dict = {'module.'+k: v for k, v in checkpoint_dict.items()
+                                if 'module.'+k in model_dict.keys()}
+                for k, _ in checkpoint_dict.items():
+                    logger.info('=> loading {} pretrained model {}'.format(k, cfg.TRAIN.RESUME))
 
-            logger.info(set(model_dict)==set(checkpoint_dict))
-            assert set(model_dict)==set(checkpoint_dict)
-            model_dict.update(checkpoint_dict)
-            model.load_state_dict(model_dict, strict=True)
-            optimizer.load_state_dict(checkpoint['optimizer'])
-            if dist.get_rank()==0:
-                logger.info("=> loaded checkpoint '{}' (epoch {})".format(cfg.TRAIN.RESUME, checkpoint['epoch']))
-        else:
-            if dist.get_rank()==0:
-                logger.info("=> no checkpoint found at '{}'".format(cfg.TRAIN.RESUME))
+                logger.info(set(model_dict)==set(checkpoint_dict))
+                assert set(model_dict)==set(checkpoint_dict)
+                model_dict.update(checkpoint_dict)
+                model.load_state_dict(model_dict, strict=True)
+                optimizer.load_state_dict(checkpoint['optimizer'])
+                if dist.get_rank()==0:
+                    logger.info("=> loaded checkpoint '{}' (epoch {})".format(cfg.TRAIN.RESUME, checkpoint['epoch']))
+                else:
+                    if dist.get_rank()==0:
+                        logger.info("=> no checkpoint found at '{}'".format(cfg.TRAIN.RESUME))
+
+
 
 
     # TODO
@@ -156,9 +173,11 @@ def main():
     train_loader = build_train_loader(cfg)
     val_loader = build_val_loader(cfg)
 
+    if cfg.TRAIN.RESUME:
+        bestpoint = torch.load(os.path.join(cfg.EXP.OUTPUT_DIR,'best.pth.tar'), map_location=lambda storage, loc: storage.cuda())
+        best_mIoU = bestpoint['mIoU']
+        best_epoch = bestpoint['epoch']
 
-    best_mIoU = 0
-    best_epoch = 0
 
     logger.info('starts training')
     for epoch in range(cfg.TRAIN.START_EPOCH, cfg.TRAIN.END_EPOCH):
@@ -187,6 +206,7 @@ def main():
 
             if best_mIoU < mIoU_val:
                 torch.save({
+                    'mIoU' : mIoU_val,
                     'epoch': epoch+1,
                     'state_dict': model.module.state_dict(),
                     'optimizer': optimizer.state_dict(),

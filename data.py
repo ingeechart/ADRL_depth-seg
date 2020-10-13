@@ -31,9 +31,10 @@ class ADRLscapes(data.Dataset):
         self.root = data_root
         self.split = split
         self.image_base = os.path.join(self.root, 'dataset1', self.split, 'input')
+        #print(self.image_base)
         #self.image_base = os.path.join(self.root, self.split, 'input')
         self.seg_file = glob.glob(self.image_base + '/*/*/*/*.png')
-        print(len(self.seg_file))
+        #print(len(self.seg_file))
         assert len(self.seg_file) is not 0, 'cannot find datas!'
         #
         self.transforms = transforms
@@ -107,7 +108,6 @@ def build_val_loader(cfg):
     std = [item * value_scale for item in std]
 
     val_transforms = transform.Compose([
-        #transform.GenerateTarget(),
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std),
     ])
@@ -160,7 +160,7 @@ if __name__ == '__main__':
     from data import transform
 
     #root = 'ADRL'
-    root = 'ws'
+    root = 'ADRL'
     # print(root)
     value_scale = 255
     mean = [0.485, 0.456, 0.406]
