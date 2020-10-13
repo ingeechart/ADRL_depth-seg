@@ -1,0 +1,2090 @@
+[Tue Oct 13 19:18:09 2020]starts experiments setting test_model
+[Tue Oct 13 19:18:09 2020]starts experiments setting test_model
+[Tue Oct 13 19:18:09 2020]starts experiments setting test_model
+[Tue Oct 13 19:18:09 2020]starts experiments setting test_model
+=> creating model ...
+DistributedDataParallel(
+  (module): hardnet(
+    (base): ModuleList(
+      (0): ConvLayer(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(16, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): ConvLayer(
+        (conv): Conv2d(24, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): ConvLayer(
+        (conv): Conv2d(32, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (4): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(48, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(58, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(18, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(76, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (5): ConvLayer(
+        (conv): Conv2d(48, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (6): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (7): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(80, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(28, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(108, 46, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(46, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (8): ConvLayer(
+        (conv): Conv2d(78, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (9): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (10): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(96, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(114, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(144, 52, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(52, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(52, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(70, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(196, 88, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (11): ConvLayer(
+        (conv): Conv2d(160, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (12): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (13): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(160, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(184, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(224, 70, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(70, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(70, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(94, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(294, 118, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(118, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (14): ConvLayer(
+        (conv): Conv2d(214, 224, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (15): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (16): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(224, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(256, 54, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(54, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(310, 92, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(92, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(92, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(124, 54, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(54, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(402, 158, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(158, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (17): ConvLayer(
+        (conv): Conv2d(286, 320, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (transUpBlocks): ModuleList(
+      (0): TransitionUp()
+      (1): TransitionUp()
+      (2): TransitionUp()
+      (3): TransitionUp()
+    )
+    (denseBlocksUp): ModuleList(
+      (0): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(267, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(291, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(331, 70, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(70, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(70, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(94, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(401, 118, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(118, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (1): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(187, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(205, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(235, 52, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(52, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(52, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(70, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(287, 88, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (2): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(119, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(135, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(28, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(163, 46, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(46, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (3): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(63, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(73, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(18, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(91, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (conv1x1_up): ModuleList(
+      (0): ConvLayer(
+        (conv): Conv2d(534, 267, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(267, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(374, 187, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(187, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): ConvLayer(
+        (conv): Conv2d(238, 119, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(119, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): ConvLayer(
+        (conv): Conv2d(126, 63, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(63, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (finalConv): Conv2d(48, 4, kernel_size=(1, 1), stride=(1, 1))
+    (LossFunction): CrossEntropyLoss()
+  )
+)
+=> loading checkpoint 'results/checkpoint.pth.tar'
+=> loading module.base.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_var pretrained model results/checkpoint.pth.tar
+True
+=> loading module.denseBlocksUp.3.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+True
+=> loading module.denseBlocksUp.3.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.0.norm.running_var pretrained model results/checkpoint.pth.tar
+True
+=> loading module.base.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.4.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.7.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.8.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.10.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.11.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.13.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.14.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.16.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.base.17.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.0.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.4.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.5.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.6.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.1.layers.7.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.2.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.denseBlocksUp.3.layers.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.0.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.1.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.2.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.conv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.weight pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.bias pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_mean pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.running_var pretrained model results/checkpoint.pth.tar
+=> loading module.conv1x1_up.3.norm.num_batches_tracked pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.weight pretrained model results/checkpoint.pth.tar
+=> loading module.finalConv.bias pretrained model results/checkpoint.pth.tar
+True
+starts training
+starts training
+starts training
+=> loaded checkpoint 'results/checkpoint.pth.tar' (epoch 736)
+starts training
+Epoch: [1/800][10/172] Data 0.000 (0.035) Batch 0.147 (0.235) Remain 08:59:12 Loss 0.0921 Accuracy 0.9620 lr [0.09999345927855788].
+Epoch: [1/800][20/172] Data 0.000 (0.017) Batch 0.148 (0.195) Remain 07:26:00 Loss 0.0590 Accuracy 0.9771 lr [0.09998691850957782].
+Epoch: [1/800][30/172] Data 0.000 (0.012) Batch 0.158 (0.182) Remain 06:56:27 Loss 0.0713 Accuracy 0.9727 lr [0.09998037769305601].
+Epoch: [1/800][40/172] Data 0.000 (0.009) Batch 0.149 (0.175) Remain 06:40:37 Loss 0.1045 Accuracy 0.9602 lr [0.09997383682898868].
+Epoch: [1/800][50/172] Data 0.000 (0.007) Batch 0.166 (0.171) Remain 06:31:58 Loss 0.0823 Accuracy 0.9659 lr [0.09996729591737197].
+Epoch: [1/800][60/172] Data 0.000 (0.006) Batch 0.149 (0.168) Remain 06:25:37 Loss 0.2199 Accuracy 0.9284 lr [0.09996075495820214].
+Epoch: [1/800][70/172] Data 0.000 (0.005) Batch 0.151 (0.166) Remain 06:20:16 Loss 0.8005 Accuracy 0.7182 lr [0.09995421395147536].
+Epoch: [1/800][80/172] Data 0.000 (0.004) Batch 0.147 (0.164) Remain 06:15:58 Loss 0.6365 Accuracy 0.7451 lr [0.09994767289718781].

@@ -26,14 +26,14 @@ _C.SYS.CUDNN_ENABLED= True
 ''' Define Detail hyperparameters for training '''
 _C.TRAIN = CN()
 _C.TRAIN.SEED = 8967
-_C.TRAIN.RESUME = ''
+_C.TRAIN.RESUME = 'results/checkpoint.pth.tar'
 _C.TRAIN.START_EPOCH = 0
 _C.TRAIN.END_EPOCH = 800
 _C.TRAIN.BATCH_SIZE = 16
 
 _C.TRAIN.OPT = CN()
 _C.TRAIN.OPT.NAME = 'SGD'
-_C.TRAIN.OPT.LR = 0.1
+_C.TRAIN.OPT.LR = 0.02
 _C.TRAIN.OPT.WD = 1e-4
 _C.TRAIN.OPT.MOMENTUM = 0.9
 
@@ -61,7 +61,7 @@ _C.MODEL.LOSS.SIZE_AVG = True
 
 ''' DATASET related params '''
 _C.DATASET = CN()
-_C.DATASET.ROOT = 'ws'
+_C.DATASET.ROOT = 'ADRL'
 _C.DATASET.NAME = 'ADRL'
 _C.DATASET.NUM_CLASSES = 4
 _C.DATASET.TRAIN_SPLIT = 'train'
