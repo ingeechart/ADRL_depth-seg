@@ -1,0 +1,456 @@
+[Tue Oct 13 20:41:00 2020]starts experiments setting test_model
+[Tue Oct 13 20:41:00 2020]starts experiments setting test_model
+[Tue Oct 13 20:41:00 2020]starts experiments setting test_model
+[Tue Oct 13 20:41:00 2020]starts experiments setting test_model
+=> creating model ...
+DistributedDataParallel(
+  (module): hardnet(
+    (base): ModuleList(
+      (0): ConvLayer(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(16, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): ConvLayer(
+        (conv): Conv2d(24, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): ConvLayer(
+        (conv): Conv2d(32, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (norm): SyncBatchNorm(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (4): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(48, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(58, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(18, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(76, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (5): ConvLayer(
+        (conv): Conv2d(48, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (6): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (7): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(80, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(28, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(108, 46, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(46, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (8): ConvLayer(
+        (conv): Conv2d(78, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (9): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (10): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(96, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(114, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(144, 52, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(52, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(52, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(70, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(196, 88, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (11): ConvLayer(
+        (conv): Conv2d(160, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (12): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (13): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(160, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(184, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(224, 70, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(70, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(70, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(94, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(294, 118, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(118, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (14): ConvLayer(
+        (conv): Conv2d(214, 224, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (15): AvgPool2d(kernel_size=2, stride=2, padding=0)
+      (16): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(224, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(256, 54, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(54, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(310, 92, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(92, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(92, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(124, 54, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(54, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(54, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(402, 158, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(158, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (17): ConvLayer(
+        (conv): Conv2d(286, 320, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (transUpBlocks): ModuleList(
+      (0): TransitionUp()
+      (1): TransitionUp()
+      (2): TransitionUp()
+      (3): TransitionUp()
+    )
+    (denseBlocksUp): ModuleList(
+      (0): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(267, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(291, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(331, 70, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(70, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(70, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(94, 40, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(401, 118, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(118, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (1): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(187, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(205, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(235, 52, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(52, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (4): ConvLayer(
+            (conv): Conv2d(52, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (5): ConvLayer(
+            (conv): Conv2d(70, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (6): ConvLayer(
+            (conv): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (7): ConvLayer(
+            (conv): Conv2d(287, 88, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (2): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(119, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(135, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(28, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(163, 46, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(46, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+      (3): HarDBlock(
+        (layers): ModuleList(
+          (0): ConvLayer(
+            (conv): Conv2d(63, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (1): ConvLayer(
+            (conv): Conv2d(73, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (2): ConvLayer(
+            (conv): Conv2d(18, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (3): ConvLayer(
+            (conv): Conv2d(91, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (norm): SyncBatchNorm(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+      )
+    )
+    (conv1x1_up): ModuleList(
+      (0): ConvLayer(
+        (conv): Conv2d(534, 267, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(267, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (1): ConvLayer(
+        (conv): Conv2d(374, 187, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(187, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): ConvLayer(
+        (conv): Conv2d(238, 119, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(119, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): ConvLayer(
+        (conv): Conv2d(126, 63, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): SyncBatchNorm(63, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (finalConv): Conv2d(48, 4, kernel_size=(1, 1), stride=(1, 1))
+    (LossFunction): CrossEntropyLoss()
+  )
+)
+starts training
+starts training
+starts training
+starts training
+Epoch: [1/800][10/172] Data 0.000 (0.048) Batch 0.146 (0.272) Remain 10:24:33 Loss 0.7083 Accuracy 0.7253 lr [0.019998691855711574].
+Epoch: [1/800][20/172] Data 0.000 (0.024) Batch 0.153 (0.212) Remain 08:05:54 Loss 0.5991 Accuracy 0.7332 lr [0.019997383701915564].
+Epoch: [1/800][30/172] Data 0.000 (0.016) Batch 0.163 (0.194) Remain 07:23:44 Loss 0.5334 Accuracy 0.7958 lr [0.019996075538611203].
+Epoch: [1/800][40/172] Data 0.000 (0.012) Batch 0.151 (0.184) Remain 07:02:27 Loss 0.5187 Accuracy 0.7703 lr [0.019994767365797736].
+Epoch: [1/800][50/172] Data 0.000 (0.010) Batch 0.152 (0.178) Remain 06:48:28 Loss 0.4361 Accuracy 0.8439 lr [0.019993459183474394].
+Epoch: [1/800][60/172] Data 0.000 (0.008) Batch 0.153 (0.174) Remain 06:38:22 Loss 0.4020 Accuracy 0.8370 lr [0.019992150991640426].
+Epoch: [1/800][70/172] Data 0.000 (0.007) Batch 0.156 (0.172) Remain 06:33:10 Loss 0.3865 Accuracy 0.8550 lr [0.01999084279029507].
+Epoch: [1/800][80/172] Data 0.000 (0.006) Batch 0.155 (0.169) Remain 06:28:06 Loss 0.5607 Accuracy 0.7842 lr [0.019989534579437564].
+Epoch: [1/800][90/172] Data 0.000 (0.005) Batch 0.150 (0.168) Remain 06:24:24 Loss 0.3349 Accuracy 0.8595 lr [0.019988226359067142].
+Epoch: [1/800][100/172] Data 0.000 (0.005) Batch 0.157 (0.167) Remain 06:22:52 Loss 0.3344 Accuracy 0.8796 lr [0.01998691812918305].
+Epoch: [1/800][110/172] Data 0.000 (0.004) Batch 0.170 (0.167) Remain 06:22:01 Loss 0.3570 Accuracy 0.8713 lr [0.019985609889784522].
+Epoch: [1/800][120/172] Data 0.000 (0.004) Batch 0.154 (0.166) Remain 06:19:54 Loss 0.5188 Accuracy 0.8451 lr [0.0199843016408708].
+Epoch: [1/800][130/172] Data 0.000 (0.004) Batch 0.148 (0.165) Remain 06:18:32 Loss 0.4940 Accuracy 0.8226 lr [0.019982993382441125].
+Epoch: [1/800][140/172] Data 0.000 (0.004) Batch 0.160 (0.164) Remain 06:16:25 Loss 0.3447 Accuracy 0.8759 lr [0.019981685114494725].
+Epoch: [1/800][150/172] Data 0.000 (0.003) Batch 0.154 (0.163) Remain 06:14:31 Loss 0.4523 Accuracy 0.8052 lr [0.019980376837030852].
+Epoch: [1/800][160/172] Data 0.000 (0.003) Batch 0.150 (0.163) Remain 06:12:41 Loss 0.4809 Accuracy 0.8079 lr [0.019979068550048735].
+Epoch: [1/800][170/172] Data 0.000 (0.003) Batch 0.136 (0.161) Remain 06:09:15 Loss 0.2353 Accuracy 0.9239 lr [0.019977760253547618].
+Train result at epoch [1/800]: mIoU/mAcc/allAcc 0.6089/0.7338/0.8090.
+Test: [10/170] Data 0.000 (0.023) Batch 0.020 (0.059) Loss 0.3583 (0.3713) Accuracy 0.8719.
+Test: [20/170] Data 0.000 (0.011) Batch 0.024 (0.040) Loss 0.1780 (0.3339) Accuracy 0.9565.
+Test: [30/170] Data 0.000 (0.008) Batch 0.019 (0.033) Loss 0.3125 (0.3402) Accuracy 0.8873.
+Test: [40/170] Data 0.000 (0.006) Batch 0.019 (0.030) Loss 0.1821 (0.3766) Accuracy 0.9488.
+Test: [50/170] Data 0.000 (0.005) Batch 0.020 (0.028) Loss 0.2752 (0.3808) Accuracy 0.8981.
+Test: [60/170] Data 0.000 (0.004) Batch 0.019 (0.027) Loss 0.3967 (0.3672) Accuracy 0.8707.
+Test: [70/170] Data 0.000 (0.003) Batch 0.021 (0.026) Loss 0.3082 (0.3542) Accuracy 0.8894.
+Test: [80/170] Data 0.000 (0.003) Batch 0.019 (0.025) Loss 0.2809 (0.3583) Accuracy 0.9187.
+Test: [90/170] Data 0.000 (0.003) Batch 0.020 (0.024) Loss 0.2850 (0.3504) Accuracy 0.8766.
+Test: [100/170] Data 0.000 (0.002) Batch 0.018 (0.024) Loss 0.2964 (0.3487) Accuracy 0.8906.
+Test: [110/170] Data 0.000 (0.002) Batch 0.020 (0.024) Loss 0.3188 (0.3540) Accuracy 0.8694.
+Test: [120/170] Data 0.000 (0.002) Batch 0.019 (0.023) Loss 0.3580 (0.3581) Accuracy 0.8798.
+Test: [130/170] Data 0.000 (0.002) Batch 0.021 (0.023) Loss 0.2753 (0.3543) Accuracy 0.8966.
+Test: [140/170] Data 0.000 (0.002) Batch 0.020 (0.023) Loss 0.2917 (0.3575) Accuracy 0.8910.
+Test: [150/170] Data 0.000 (0.002) Batch 0.021 (0.023) Loss 0.3059 (0.3667) Accuracy 0.8833.
+Test: [160/170] Data 0.000 (0.002) Batch 0.021 (0.023) Loss 0.9608 (0.3795) Accuracy 0.7921.
+Test: [170/170] Data 0.000 (0.001) Batch 0.017 (0.022) Loss 0.3452 (0.3717) Accuracy 0.8935.
+Val result: mIoU/mAcc/allAcc 0.6903/0.7675/0.8789.
+Class_0 Result: iou/accuracy 0.8471/0.9576.
+Class_1 Result: iou/accuracy 0.8308/0.8965.
+Class_2 Result: iou/accuracy 0.4677/0.5363.
+Class_3 Result: iou/accuracy 0.6157/0.6794.
+Loss_train: 0.4777859066  Loss_val: 0.3717026157
+Best mIoU: 0.690318298411593  Best Epoch: 1
+Epoch: [2/800][10/172] Data 0.000 (0.043) Batch 0.146 (0.234) Remain 08:56:24 Loss 0.3200 Accuracy 0.8723 lr [0.019976190285180117].
+Epoch: [2/800][20/172] Data 0.000 (0.022) Batch 0.157 (0.193) Remain 07:22:19 Loss 0.2603 Accuracy 0.9065 lr [0.019974881967734514].

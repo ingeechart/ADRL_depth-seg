@@ -161,7 +161,7 @@ def main():
     best_epoch = 0
 
     logger.info('starts training')
-    for epoch in range(736, cfg.TRAIN.END_EPOCH):
+    for epoch in range(cfg.TRAIN.START_EPOCH, cfg.TRAIN.END_EPOCH):
         epoch_log = epoch+1
         loss_train, mIoU_train, mAcc_train, allAcc_train = train(model, train_loader, optimizer, epoch, cfg)
 

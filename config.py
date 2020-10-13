@@ -26,7 +26,7 @@ _C.SYS.CUDNN_ENABLED= True
 ''' Define Detail hyperparameters for training '''
 _C.TRAIN = CN()
 _C.TRAIN.SEED = 8967
-_C.TRAIN.RESUME = 'results/checkpoint.pth.tar'
+_C.TRAIN.RESUME = ''
 _C.TRAIN.START_EPOCH = 0
 _C.TRAIN.END_EPOCH = 800
 _C.TRAIN.BATCH_SIZE = 16
