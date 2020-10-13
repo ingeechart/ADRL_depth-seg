@@ -31,7 +31,9 @@ class ADRLscapes(data.Dataset):
         self.root = data_root
         self.split = split
         self.image_base = os.path.join(self.root, 'dataset1', self.split, 'input')
+        #self.image_base = os.path.join(self.root, self.split, 'input')
         self.seg_file = glob.glob(self.image_base + '/*/*/*/*.png')
+        print(len(self.seg_file))
         assert len(self.seg_file) is not 0, 'cannot find datas!'
         #
         self.transforms = transforms
@@ -46,7 +48,6 @@ class ADRLscapes(data.Dataset):
 
         gt_path = img_path.replace('input', 'target', 1)
         gt_path = gt_path.replace('rgb', 'label', 1)
-
         label = Image.open(gt_path)
         label = np.asarray(label)
 
@@ -74,7 +75,6 @@ def build_train_loader(cfg):
         transform.RandScale([0.5, 2]),  #
         transform.RandomHorizontalFlip(),  #
         transform.Crop(cfg.TRAIN.DATA.CROP_SIZE, crop_type='rand', padding=mean, ignore_label=255),
-
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std)
     ])
@@ -107,12 +107,12 @@ def build_val_loader(cfg):
     std = [item * value_scale for item in std]
 
     val_transforms = transform.Compose([
-        transform.GenerateTarget(),
+        #transform.GenerateTarget(),
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std),
     ])
     val_data = ADRLscapes(data_root=cfg.DATASET.ROOT, split=cfg.DATASET.VAL_SPLIT, transforms=val_transforms)
-    if dist.is_initialized():
+    if torch.distributed.is_available():
         from torch.utils.data.distributed import DistributedSampler
         sampler = DistributedSampler(val_data)
     else:
@@ -159,7 +159,8 @@ if __name__ == '__main__':
     import matplotlib.colors as clr
     from data import transform
 
-    root = 'ADRL'
+    #root = 'ADRL'
+    root = 'ws'
     # print(root)
     value_scale = 255
     mean = [0.485, 0.456, 0.406]
@@ -170,19 +171,27 @@ if __name__ == '__main__':
     train_transform = transform.Compose([
         transform.RandScale([0.5, 2]),
         transform.RandomHorizontalFlip(),
-        transform.Crop([713, 713], crop_type='rand', padding=mean, ignore_label=255),
+        transform.Crop([320, 480], crop_type='rand', padding=mean, ignore_label=255),
         transform.ToTensor(),
         transform.Normalize(mean=mean, std=std)
     ])
 
-    dataset = ADRLscapes(root, transforms=train_transform)
+    val_transforms = transform.Compose([
+        transform.ToTensor(),
+      #  transform.GenerateTarget(),
+        transform.Normalize(mean=mean, std=std),
+    ])
+
+    dataset = ADRLscapes(root, transforms=val_transforms)
 
     img, label = dataset.__getitem__(0)
+    print("imgshape:",img.shape)
+    print("labelshape:",label.shape)
     print(img.dtype)
     print(label.shape)
     fig_in = plt.figure()
     ax = fig_in.add_subplot(1, 2, 1)
-    ax.imshow(img)
+    ax.imshow(img[0])
     ax = fig_in.add_subplot(1, 2, 2)
     ax.imshow(label)
     plt.show()

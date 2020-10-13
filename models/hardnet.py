@@ -377,6 +377,7 @@ class hardnet(nn.Module):
         #######################
 
         # self.LossFunction = Bootstrapped_CrossEntropy2d(K=4096, thresh=0.3, weight=1.0, size_average=True)
+
         self.LossFunction = nn.CrossEntropyLoss(ignore_index = 255)
 
 
@@ -411,10 +412,10 @@ class hardnet(nn.Module):
             out = self.denseBlocksUp[i](out)
 
         out = self.finalConv(out)
-
+        out = F.interpolate(out, size=(320, 480), mode="bilinear", align_corners=True)
+        #output size : H/W 320/480
         loss = self.LossFunction(out, target)
         return loss, out.max(1)[1] #same as argmax
-
 
 
 

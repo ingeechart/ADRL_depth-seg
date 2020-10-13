@@ -4,7 +4,7 @@
 import copy
 import torchvision.models as models
 
-from ptsemseg.models.hardnet import hardnet
+from models.hardnet import hardnet
 
 # def get_model(model_dict, n_classes, version=None):
 #     name = model_dict["arch"]
@@ -18,7 +18,7 @@ from ptsemseg.models.hardnet import hardnet
 
 def get_model(cfg, version=None):
     model = _get_model_instance(cfg.MODEL.NAME)
-    model = model(cfg, n_classes=cfg.DATASET.NUM_CLASSES)
+    model = model(n_classes=cfg.DATASET.NUM_CLASSES)
 
     return model
 

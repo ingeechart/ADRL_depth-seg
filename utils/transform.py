@@ -4,7 +4,7 @@ import numpy as np
 import numbers
 import collections
 import cv2
-
+import torch.nn.functional as F
 import torch
 
 
@@ -38,23 +38,6 @@ class ToTensor(object):
         label = torch.from_numpy(label)
         if not isinstance(label, torch.LongTensor):
             label = label.long()
-        return image, label
-
-
-class GenerateTarget(object):
-    # Converts numpy.ndarray (H x W x C) to a torch.FloatTensor of shape (C x H x W).
-    def __call__(self, image, label):
-        if not isinstance(image, np.ndarray) or not isinstance(label, np.ndarray):
-            raise (RuntimeError("segtransform.ToTensor() only handle np.ndarray"
-                                "[eg: data readed by cv2.imread()].\n"))
-        if len(image.shape) > 3 or len(image.shape) < 2:
-            raise (RuntimeError("segtransform.ToTensor() only handle np.ndarray with 3 dims or 2 dims.\n"))
-        if len(image.shape) == 2:
-            image = np.expand_dims(image, axis=2)
-        if not len(label.shape) == 2:
-            raise (RuntimeError("segtransform.ToTensor() only handle np.ndarray labellabel with 2 dims.\n"))
-
-        label = cv2.resize(label, (120, 80), cv2.INTER_NEAREST)
         return image, label
 
 
@@ -182,7 +165,6 @@ class Crop(object):
             w_off = int((w - self.crop_w) / 2)
         image = image[h_off:h_off + self.crop_h, w_off:w_off + self.crop_w]
         label = label[h_off:h_off + self.crop_h, w_off:w_off + self.crop_w]
-        label = cv2.resize(label, (120, 80), cv2.INTER_NEAREST)
         label = np.where(label > 3, 255, label)
 
         return image, label

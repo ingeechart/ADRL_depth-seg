@@ -24,33 +24,27 @@ classfication : sky + ground + janground + gate + others 4class
 map_dic = {0 : [0,0,0], 1 : [146, 151, 252], 2:[[176, 229, 252], [79, 156, 248], [93, 140, 183], [168, 233, 159], [197, 157, 137],
            [38, 75, 223], [252, 230, 102], [213, 117, 229], [248, 88, 168], [90, 236, 129],
            [247, 161, 73], [86, 232, 175]], 3:[134, 93, 210]}
+
+
 sky = [146, 151, 252]
 grounds = [[176, 229, 252], [79, 156, 248], [93, 140, 183], [168, 233, 159],
            [197, 157, 137], [38, 75, 223], [252, 230, 102], [213, 117, 229],
            [248, 88, 168], [90, 236, 129], [247, 161, 73], [86, 232, 175]]
 gate = [134, 93, 210]
 
-type = 'spline'
-Map = 'Soccer_Medium'
 def rgb2id(img, sky, grounds, gate) :
     id_seg = np.zeros((img.shape[:2]), dtype=np.int)
-    id_seg[(img==sky).all(axis=2)] = 1
+    id_seg[(img==sky).all(axis=2)] = 0
     for i, id in enumerate(grounds) :
-        id_seg[(img==id).all(axis=2)] = 2
-    id_seg[(img==gate).all(axis=2)] = 3
+        id_seg[(img==id).all(axis=2)] = 1
+    id_seg[(img==gate).all(axis=2)] = 2
     #0 -> other, 70 -> sky ,140 -> ground, 255 -> gate
     return id_seg
 
-# def makeLabel(id_seg) :
-#     label_seg = np.zeros((id_seg.shape[0],id_seg.shape[1],4))
-#     for width in range(label_seg.shape[0]):
-#         for height in range(label_seg.shape[1]):
-#             label_seg[width,height,id_seg[width,height]] = 1
-#
-#     print(label_seg)
+type = 'spline'
+Map = 'Soccer_Medium'
 
-
-def makeColorMap():
+def makeTargetMap():
     files_spline = glob.glob('ws/dataset1/val/spline/'+Map+'/'+Map+'_left_seg/*.png')
     files_onebyone = glob.glob('ws/dataset1/val/onebyone/'+Map+'/'+Map+'_left_seg/*.png')
     print("spline:",len(files_spline))
@@ -88,7 +82,11 @@ def makeColorMap():
     #     order = order + 1
 
 def main():
-    makeColorMap()
+    img = cv.imread('left_0.png')
+    id_seg = rgb2id(img, sky, grounds, gate)
+    id_seg = id_seg.astype('uint8')
+    cv.imshow('id_seg',id_seg)
+    cv.waitKey(0)
 
 if __name__ == '__main__':
     main()
